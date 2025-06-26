@@ -1,159 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEA Catering</title>
-    
-    <!-- Bootstrap & AOS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f7fff7;
-            scroll-behavior: smooth;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEA Catering</title>
 
-        /* Navbar Styles */
-        .navbar {
-            background-color: #28a745;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        .navbar .nav-link {
-            color: white !important;
-            font-weight: 500;
-            padding: 10px 15px;
-            transition: 0.3s ease;
-            position: relative;
-        }
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-        .navbar .nav-link::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0%;
-            height: 2px;
-            background-color: #fff;
-            transition: 0.4s ease;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
 
-        .navbar .nav-link:hover::after,
-        .navbar .nav-link.active::after {
-            width: 100%;
-            left: 0;
-        }
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
 
-        .navbar-toggler {
-            border: none;
-        }
+    .nav-hover::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.4);
+      border-radius: 9999px;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease;
+      z-index: -1;
+    }
 
-        /* Button Styles */
-        .btn-sign {
-            background: white;
-            color: #28a745;
-            border-radius: 25px;
-            padding: 6px 18px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-sign:hover {
-            background: #f1f1f1;
-            color: #218838;
-        }
-
-        .btn-outline-light {
-            border-radius: 25px;
-            padding: 6px 18px;
-            font-weight: 600;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .navbar-collapse {
-                text-align: center;
-            }
-            .navbar-nav {
-                margin-top: 1rem;
-            }
-        }
-
-        /* Hero Text Enhancements */
-        .hero .lead {
-            font-size: 1.5rem;
-            color: #2d2d2d;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .hero .description {
-            font-size: 1.1rem;
-            color: #555;
-            max-width: 720px;
-            margin: 0 auto;
-            line-height: 1.8;
-            padding-top: 10px;
-            font-weight: 400;
-            opacity: 0.9;
-        }
-    </style>
+    .nav-hover:hover::before,
+    .nav-hover.active::before {
+      width: 100%;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-green-50 scroll-smooth">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top" data-aos="fade-down" data-aos-delay="100">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">SEA Catering</a>
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="/">Home</a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#">Menu</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Subscription</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
-            </ul>
-
-            <!-- Desktop -->
-            <div class="d-none d-lg-flex">
-                <a href="/login" class="btn btn-sign me-2">Login</a>
-                <a href="/register" class="btn btn-outline-light">Sign Up</a>
-            </div>
-
-            <!-- Mobile -->
-            <div class="d-lg-none mt-3 text-center w-100">
-                <a href="/login" class="btn btn-sign me-2 mb-2">Login</a>
-                <a href="/register" class="btn btn-outline-light mb-2">Sign Up</a>
-            </div>
-        </div>
+<nav class="sticky top-0 z-50 bg-green-600 shadow-md" data-aos="fade-down">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <div class="text-white text-xl font-bold">SEA Catering</div>
+      <div class="hidden md:flex items-center space-x-6">
+        <a href="/" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all active">Home</a>
+        <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Menu</a>
+        <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Subscription</a>
+        <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Contact Us</a>
+      </div>
+     <div class="hidden md:flex space-x-3">
+    @auth
+        <form action="{{ route('logout') }}" method="POST" class="flex items-center space-x-3">
+            @csrf
+            <span class="text-white font-medium">Hi, {{ Auth::user()->name }}</span>
+            <button type="submit" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-red-100 transition">
+                Logout
+            </button>
+        </form>
+    @else
+        <a href="{{ route('login') }}" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition">Login</a>
+        <a href="{{ route('register') }}" class="border border-white text-white font-semibold px-5 py-2 rounded-full hover:bg-white hover:text-green-600 transition">Sign Up</a>
+    @endauth
+</div>
+      <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">☰</button>
     </div>
+
+   <!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden flex flex-col gap-2 items-center bg-green-700 rounded-lg mt-2 py-4 transition-all duration-300">
+  <a href="/" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Home</a>
+  <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Menu</a>
+  <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Subscription</a>
+  <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Contact Us</a>
+
+  @auth
+    <div class="text-white font-semibold mt-2">
+        {{ Auth::user()->name }}
+    </div>
+    <form action="{{ route('logout') }}" method="POST" class="w-full flex justify-center">
+      @csrf
+      <button type="submit" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition mt-2">
+        Logout
+      </button>
+    </form>
+  @else
+    <a href="{{ route('login') }}" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full mt-2 hover:bg-gray-100 transition">Login</a>
+    <a href="{{ route('register') }}" class="border border-white text-white font-semibold px-5 py-2 rounded-full hover:bg-white hover:text-green-700 transition">Sign Up</a>
+  @endauth
+</div>
+
 </nav>
 
-<!-- Page Content -->
-<main>
-    @yield('content')
-</main>
+<!-- Dynamic Page Content -->
+@yield('content')
 
 <!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-    AOS.init({
-        once: true,
-        duration: 800
+  AOS.init({ once: false, duration: 800, offset: 120, easing: 'ease-in-out' });
+
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    document.getElementById("mobile-menu").classList.toggle("hidden");
+  });
+</script>
+
+<!-- SweetAlert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+@if (session('success'))
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: '{{ session('success') }}',
+        confirmButtonColor: '#22c55e',
     });
+@endif
 </script>
 
 </body>
