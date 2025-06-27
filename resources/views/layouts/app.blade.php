@@ -124,7 +124,7 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
-  AOS.init({ once: false, duration: 800, offset: 120, easing: 'ease-in-out' });
+  AOS.init({ once: true, duration: 800, offset: 120, easing: 'ease-in-out' });
   document.getElementById("menu-toggle").addEventListener("click", () => {
     document.getElementById("mobile-menu").classList.toggle("hidden");
   });

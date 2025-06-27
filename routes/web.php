@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function () {
 // ===============================
 // Testimonial Routes (Tambahan)
 // ===============================
-Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonial.store');
+Route::post('/testimonial', [TestimonialController::class, 'store'])->middleware('auth')->name('testimonial.store');
+
 
 
