@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealPlanController;
+use App\Http\Controllers\SubscriptionController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -19,3 +20,17 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middl
 // Meal Plan / Menu Page (Interactive Display)
 Route::get('/plans', [MealPlanController::class, 'index'])->name('plans.index');
 Route::get('/plans/{id}', [MealPlanController::class, 'show'])->name('plans.show');
+
+// ===============================
+// Subscription Routes (Level 3)
+// ===============================
+Route::middleware(['auth'])->group(function () {
+    // Show subscription form
+    Route::get('/subscription', [SubscriptionController::class, 'create'])->name('subscription.create');
+
+    // Handle form submission
+    Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
+
+    // Optional: Show user subscriptions
+    Route::get('/my-subscriptions', [SubscriptionController::class, 'index'])->name('subscription.index');
+});

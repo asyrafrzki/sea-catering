@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SEA Catering</title>
 
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
@@ -45,18 +48,21 @@
 <nav class="sticky top-0 z-50 bg-green-600 shadow-md" data-aos="fade-down">
   <div class="max-w-7xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
-      <div class="text-white text-xl font-bold">SEA Catering</div>
+    <a href="/" class="flex items-center space-x-2 text-white text-xl font-bold">
+  <img src="{{ asset('images/icon.png') }}" alt="Logo" class="w-16 h-16">
+  <span>SEA Catering</span>
+</a>
       <div class="hidden md:flex items-center space-x-6">
-        <a href="/" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all active">Home</a>
+      <a href="/" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('/') ? 'active' : '' }}">Home</a>
         <a href="{{ route('plans.index') }}" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('plans') ? 'active' : '' }}">Menu</a>
-        <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Subscription</a>
+        <a href="{{ route('subscription.create') }}" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('subscription/create') ? 'active' : '' }}">Subscription</a>
         <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Contact Us</a>
       </div>
      <div class="hidden md:flex space-x-3">
     @auth
         <form action="{{ route('logout') }}" method="POST" class="flex items-center space-x-3">
             @csrf
-            <span class="text-white font-medium">Hi, {{ Auth::user()->name }}</span>
+            <span class="text-white font-medium"> {{ Auth::user()->name }}</span>
             <button type="submit" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-red-100 transition">
                 Logout
             </button>
@@ -73,7 +79,7 @@
 <div id="mobile-menu" class="hidden flex flex-col gap-2 items-center bg-green-700 rounded-lg mt-2 py-4 transition-all duration-300">
   <a href="/" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Home</a>
   <a href="{{ route('plans.index') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition {{ request()->is('plans') ? 'bg-white text-green-700' : '' }}">Menu</a>
-  <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Subscription</a>
+<a href="{{ route('subscription.create') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition {{ request()->is('subscription/create') ? 'bg-white text-green-700' : '' }}">Subscription</a>
   <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Contact Us</a>
 
   @auth
