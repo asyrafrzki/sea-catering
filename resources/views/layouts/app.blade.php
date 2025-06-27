@@ -48,7 +48,7 @@
       <div class="text-white text-xl font-bold">SEA Catering</div>
       <div class="hidden md:flex items-center space-x-6">
         <a href="/" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all active">Home</a>
-        <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Menu</a>
+        <a href="{{ route('plans.index') }}" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('plans') ? 'active' : '' }}">Menu</a>
         <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Subscription</a>
         <a href="#" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Contact Us</a>
       </div>
@@ -72,7 +72,7 @@
    <!-- Mobile Menu -->
 <div id="mobile-menu" class="hidden flex flex-col gap-2 items-center bg-green-700 rounded-lg mt-2 py-4 transition-all duration-300">
   <a href="/" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Home</a>
-  <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Menu</a>
+  <a href="{{ route('plans.index') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition {{ request()->is('plans') ? 'bg-white text-green-700' : '' }}">Menu</a>
   <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Subscription</a>
   <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Contact Us</a>
 
