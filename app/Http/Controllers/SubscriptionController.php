@@ -4,21 +4,32 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subscription;
+use App\Models\MealPlan;
 use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
+    /**
+     * Tampilkan daftar subscription user
+     */
     public function index()
     {
         $subscriptions = Subscription::where('user_id', Auth::id())->get();
         return view('subscription.index', compact('subscriptions'));
     }
 
+    /**
+     * Tampilkan form create
+     */
     public function create()
     {
-        return view('subscription.create');
+        $plans = MealPlan::all(); // Ambil semua meal plan dari DB
+        return view('subscription.create', compact('plans'));
     }
 
+    /**
+     * Simpan subscription baru
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -30,25 +41,27 @@ class SubscriptionController extends Controller
             'allergies' => 'nullable|string',
         ]);
 
-        // Harga per meal
-        $prices = [
-            'diet' => 30000,
-            'protein' => 40000,
-            'royal' => 60000,
-        ];
+        // Cari MealPlan berdasarkan name (pastikan value="diet", "protein", dll)
+        $mealPlan = MealPlan::where('name', $request->plan)->first();
 
-        $plan = $request->plan;
+        // Jika meal plan tidak ditemukan
+        if (!$mealPlan) {
+            return back()->withErrors(['plan' => 'Plan tidak valid.'])->withInput();
+        }
+
+        // Hitung total
         $mealCount = count($request->meal_types);
         $dayCount = count($request->days);
-        $unitPrice = $prices[$plan] ?? 0;
+        $unitPrice = $mealPlan->price;
 
         $total = $unitPrice * $mealCount * $dayCount * 4.3;
 
+        // Simpan ke database
         Subscription::create([
             'user_id' => Auth::id(),
             'name' => $request->name,
             'phone' => $request->phone,
-            'plan' => $plan,
+            'plan' => $mealPlan->name,
             'meal_types' => json_encode($request->meal_types),
             'days' => json_encode($request->days),
             'allergies' => $request->allergies,
