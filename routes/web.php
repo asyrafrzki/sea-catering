@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\TestimonialController; // ✅ Tambahkan controller testimonial
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -31,6 +32,13 @@ Route::middleware(['auth'])->group(function () {
     // Handle form submission
     Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
 
-    // Optional: Show user subscriptions
+    // Show user's subscriptions
     Route::get('/my-subscriptions', [SubscriptionController::class, 'index'])->name('subscription.index');
 });
+
+// ===============================
+// Testimonial Routes (Tambahan)
+// ===============================
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonial.store');
+
+

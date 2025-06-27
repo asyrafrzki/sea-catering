@@ -37,10 +37,49 @@
     </div>
 </section>
 
-<!-- Contact Section -->
-<section class="py-10 text-center text-white bg-gradient-to-br from-green-600 to-green-700" data-aos="fade-up">
-    <h4 class="text-xl font-semibold">Contact Manager</h4>
-    <p class="mt-2"><strong>Brian</strong> | 08123456789</p>
+<!-- Testimonial Section -->
+<section id="testimonials" class="py-16 bg-white border-t border-gray-200">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center text-green-700 mb-10">What Our Customers Say</h2>
+
+    <!-- Carousel/Slider -->
+    <div x-data="{ active: 0, testimonials: @json(\App\Models\Testimonial::latest()->take(5)->get()) }" class="relative">
+      <template x-if="testimonials.length">
+        <div class="text-center px-6">
+          <div x-text="testimonials[active].message" class="text-lg italic text-gray-700 mb-4"></div>
+          <div class="font-semibold text-green-600" x-text="testimonials[active].name"></div>
+          <div class="text-yellow-500 mt-1" x-html="'★'.repeat(testimonials[active].rating) + '☆'.repeat(5 - testimonials[active].rating)"></div>
+        </div>
+      </template>
+
+      <div class="flex justify-center mt-6 space-x-2">
+        <template x-for="(t, i) in testimonials">
+          <button @click="active = i"
+                  :class="i === active ? 'bg-green-600' : 'bg-gray-300'"
+                  class="w-3 h-3 rounded-full transition duration-300"></button>
+        </template>
+      </div>
+    </div>
+
+    <!-- Testimonial Form -->
+    <div class="mt-12 max-w-xl mx-auto">
+      <h3 class="text-xl font-bold text-green-700 text-center mb-4">Share Your Experience</h3>
+      <form action="{{ route('testimonial.store') }}" method="POST" class="space-y-4">
+        @csrf
+        <input type="text" name="name" placeholder="Your Name" required class="w-full border px-4 py-2 rounded-lg focus:ring-green-300" />
+        <textarea name="message" placeholder="Your Review" required rows="3" class="w-full border px-4 py-2 rounded-lg focus:ring-green-300"></textarea>
+        <select name="rating" required class="w-full border px-4 py-2 rounded-lg focus:ring-green-300">
+          <option value="">Rate Us</option>
+          @for ($i = 5; $i >= 1; $i--)
+            <option value="{{ $i }}">{{ $i }} Star{{ $i > 1 ? 's' : '' }}</option>
+          @endfor
+        </select>
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg font-semibold hover:bg-green-700 transition">
+          Submit Testimonial
+        </button>
+      </form>
+    </div>
+  </div>
 </section>
 
 @endsection
