@@ -15,6 +15,11 @@ class Subscription extends Model
         'days',
         'allergies',
         'total_price',
+        'status',
     ];
-}
 
+    public function logs()
+    {
+        return $this->hasMany(SubscriptionLog::class);
+    }
+}

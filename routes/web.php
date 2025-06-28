@@ -6,7 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TestimonialController;
-use App\Http\Controllers\DashboardController; // ✅ Dashboard
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminDashboardController; // ✅ Tambahkan ini
 
 /*
 |--------------------------------------------------------------------------
@@ -43,20 +44,29 @@ Route::get('/plans/{id}', [MealPlanController::class, 'show'])->name('plans.show
 // ===============================
 Route::middleware(['auth'])->group(function () {
 
-    // Create & Store Subscription
+    // Buat & Simpan Subscription
     Route::get('/subscription', [SubscriptionController::class, 'create'])->name('subscription.create');
     Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
 
-    // User's subscriptions
+    // Daftar Subscription user
     Route::get('/my-subscriptions', [SubscriptionController::class, 'index'])->name('subscription.index');
 
-    //  User Dashboard
+    // Dashboard user
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    //  Dashboard actions: Pause, Resume, Cancel
+    // Aksi Dashboard: Pause, Resume, Cancel
     Route::post('/dashboard/{subscription}/pause', [DashboardController::class, 'pause'])->name('dashboard.pause');
     Route::post('/dashboard/{subscription}/resume', [DashboardController::class, 'resume'])->name('dashboard.resume');
     Route::post('/dashboard/{subscription}/cancel', [DashboardController::class, 'cancel'])->name('dashboard.cancel');
+});
+
+// ===============================
+// Admin Dashboard
+// ===============================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+        ->name('admin.dashboard');
+    // Kalau mau lebih aman, tambahkan middleware 'can:isAdmin' nanti
 });
 
 // ===============================

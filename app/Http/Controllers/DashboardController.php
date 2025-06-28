@@ -22,6 +22,10 @@ class DashboardController extends Controller
         $subscription->status = 'paused';
         $subscription->save();
 
+        $subscription->logs()->create([
+            'action' => 'pause',
+        ]);
+
         return back()->with('success', 'Subscription paused successfully.');
     }
 
@@ -34,6 +38,11 @@ class DashboardController extends Controller
         $subscription->status = 'active';
         $subscription->save();
 
+        // ✅ Catat log reaktivasi
+        $subscription->logs()->create([
+            'action' => 'resume',
+        ]);
+
         return back()->with('success', 'Subscription resumed successfully.');
     }
 
@@ -45,6 +54,10 @@ class DashboardController extends Controller
 
         $subscription->status = 'cancelled';
         $subscription->save();
+
+        $subscription->logs()->create([
+            'action' => 'cancel',
+        ]);
 
         return back()->with('success', 'Subscription cancelled successfully.');
     }

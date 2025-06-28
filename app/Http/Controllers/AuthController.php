@@ -9,13 +9,13 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login
+    // Tampilkan halaman login
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // Menampilkan halaman register
+    // Tampilkan halaman register
     public function showRegister()
     {
         return view('auth.register');
@@ -30,10 +30,16 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        // Coba login dengan Auth::attempt
+        // Coba login
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); // Hindari session fixation
-            return redirect()->intended('/')->with('success', 'Login berhasil!');
+
+            // Cek role
+            if (Auth::user()->role === 'admin') {
+                return redirect()->route('admin.dashboard')->with('success', 'Login admin berhasil!');
+            } else {
+                return redirect()->route('dashboard')->with('success', 'Login user berhasil!');
+            }
         }
 
         // Gagal login
@@ -55,23 +61,25 @@ class AuthController extends Controller
                 'regex:/[a-z]/',      // huruf kecil
                 'regex:/[A-Z]/',      // huruf besar
                 'regex:/[0-9]/',      // angka
-                'regex:/[@$!%*?&#]/', // karakter spesial
+                'regex:/[@$!%*?&#]/', // simbol spesial
             ],
         ], [
-            'password.regex' => 'Password harus mengandung huruf besar, kecil, angka, dan simbol.',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, angka, dan simbol.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
 
-        // Simpan user
+        // Simpan user dengan role default = 'user'
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'role' => 'user' // default user
         ]);
 
-        // Auto-login setelah registrasi
+        // Auto-login
         Auth::login($user);
-        return redirect('/')->with('success', 'Registrasi berhasil!');
+
+        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil!');
     }
 
     // Logout user
@@ -80,6 +88,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/')->with('success', 'Berhasil logout.');
     }
 }

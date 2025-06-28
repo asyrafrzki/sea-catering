@@ -108,24 +108,50 @@
       <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">☰</button>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden flex flex-col gap-2 items-center bg-green-700 rounded-lg mt-2 py-4 transition-all duration-300">
-      <a href="/" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Home</a>
-      <a href="{{ route('plans.index') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Menu</a>
-      <a href="{{ route('subscription.create') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Subscription</a>
-      <a href="#" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Contact Us</a>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden flex flex-col gap-2 items-center bg-green-700 rounded-lg mt-2 py-4 transition-all duration-300">
+  <a href="/"
+     class="font-medium py-1 w-11/12 text-center rounded-full transition
+     {{ request()->is('/') ? 'bg-white text-green-700' : 'text-white hover:bg-white hover:text-green-700' }}">
+    Home
+  </a>
 
-      @auth
-        <a href="{{ route('dashboard') }}" class="text-white font-medium py-1 hover:bg-white hover:text-green-700 w-11/12 text-center rounded-full transition">Dashboard</a>
-        <form action="{{ route('logout') }}" method="POST" class="w-full flex justify-center">
-          @csrf
-          <button type="submit" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition mt-2">Logout</button>
-        </form>
-      @else
-        <a href="{{ route('login') }}" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition">Login</a>
-        <a href="{{ route('register') }}" class="border border-white text-white font-semibold px-5 py-2 rounded-full hover:bg-white hover:text-green-700 transition">Sign Up</a>
-      @endauth
-    </div>
+  <a href="{{ route('plans.index') }}"
+     class="font-medium py-1 w-11/12 text-center rounded-full transition
+     {{ request()->is('plans') ? 'bg-white text-green-700' : 'text-white hover:bg-white hover:text-green-700' }}">
+    Menu
+  </a>
+
+  <a href="{{ route('subscription.create') }}"
+     class="font-medium py-1 w-11/12 text-center rounded-full transition
+     {{ request()->is('subscription/create') || request()->is('my-subscriptions') || Route::is('subscription.*') ? 'bg-white text-green-700' : 'text-white hover:bg-white hover:text-green-700' }}">
+    Subscription
+  </a>
+
+  <a href="#"
+     class="font-medium py-1 w-11/12 text-center rounded-full transition text-white hover:bg-white hover:text-green-700">
+    Contact Us
+  </a>
+
+  @auth
+    <a href="{{ route('dashboard') }}"
+       class="font-medium py-1 w-11/12 text-center rounded-full transition
+       {{ request()->is('dashboard') ? 'bg-white text-green-700' : 'text-white hover:bg-white hover:text-green-700' }}">
+      Dashboard
+    </a>
+    <form action="{{ route('logout') }}" method="POST" class="w-full flex justify-center">
+      @csrf
+      <button type="submit" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition mt-2">
+        Logout
+      </button>
+    </form>
+  @else
+    <a href="{{ route('login') }}" class="bg-white text-green-600 font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition mt-2">Login</a>
+    <a href="{{ route('register') }}" class="border border-white text-white font-semibold px-5 py-2 rounded-full hover:bg-white hover:text-green-700 transition mt-2">Sign Up</a>
+  @endauth
+</div>
+
+
   </div>
 </nav>
 
