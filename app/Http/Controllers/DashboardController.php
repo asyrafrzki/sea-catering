@@ -7,11 +7,17 @@ use App\Models\Subscription;
 
 class DashboardController extends Controller
 {
-    public function index()
-    {
-        $subscriptions = Subscription::where('user_id', auth()->id())->get();
-        return view('dashboard.index', compact('subscriptions'));
+ public function index()
+{
+    if (auth()->user()->isAdmin()) {
+        return redirect()->route('admin.dashboard');
     }
+
+    // User biasa
+    $subscriptions = Subscription::where('user_id', auth()->id())->get();
+    return view('dashboard.index', compact('subscriptions'));
+}
+
 
     public function pause(Subscription $subscription)
     {

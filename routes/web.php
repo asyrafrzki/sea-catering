@@ -7,71 +7,40 @@ use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminDashboardController; // ✅ Tambahkan ini
+use App\Http\Controllers\AdminDashboardController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
-
-// ===============================
-// Home Page
-// ===============================
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// ===============================
-// Auth Routes
-// ===============================
+// === Auth ===
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
-
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-Route::post('/logout', [AuthController::class, 'logout'])
-    ->name('logout')
-    ->middleware('auth');
-
-// ===============================
-// Meal Plan / Menu Routes
-// ===============================
+// === Meal Plans ===
 Route::get('/plans', [MealPlanController::class, 'index'])->name('plans.index');
 Route::get('/plans/{id}', [MealPlanController::class, 'show'])->name('plans.show');
 
-// ===============================
-// Subscription Routes (Level 3)
-// ===============================
+// === Subscription (User) ===
 Route::middleware(['auth'])->group(function () {
-
-    // Buat & Simpan Subscription
     Route::get('/subscription', [SubscriptionController::class, 'create'])->name('subscription.create');
     Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
-
-    // Daftar Subscription user
     Route::get('/my-subscriptions', [SubscriptionController::class, 'index'])->name('subscription.index');
-
-    // Dashboard user
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-    // Aksi Dashboard: Pause, Resume, Cancel
     Route::post('/dashboard/{subscription}/pause', [DashboardController::class, 'pause'])->name('dashboard.pause');
     Route::post('/dashboard/{subscription}/resume', [DashboardController::class, 'resume'])->name('dashboard.resume');
     Route::post('/dashboard/{subscription}/cancel', [DashboardController::class, 'cancel'])->name('dashboard.cancel');
 });
 
-// ===============================
-// Admin Dashboard
-// ===============================
+// === Admin Dashboard ===
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
-        ->name('admin.dashboard');
-    // Kalau mau lebih aman, tambahkan middleware 'can:isAdmin' nanti
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+    Route::delete('/admin/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('admin.users.delete');
+    Route::get('/admin/users/{user}/subscriptions', [AdminDashboardController::class, 'viewUserSubscriptions'])->name('admin.users.subscriptions');
 });
 
-// ===============================
-// Testimonial Routes
-// ===============================
+// === Testimonial ===
 Route::post('/testimonial', [TestimonialController::class, 'store'])
     ->middleware('auth')
     ->name('testimonial.store');
