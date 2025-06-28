@@ -38,7 +38,7 @@
                     data-plan="{{ $plan->name }}"
                     data-price="{{ $plan->price }}"
                 >
-                    <img src="{{ asset('images/' . $plan->image) }}" alt="{{ $plan->name }}" class="w-full h-24 object-cover rounded mb-2">
+                  <img src="{{ asset($plan->image) }}" alt="{{ $plan->name }}">
                     <h3 class="text-base font-bold text-green-700">{{ $plan->name }}</h3>
                     <p class="text-sm text-gray-500 truncate">{{ $plan->description }}</p>
                     <p class="text-green-800 text-sm font-semibold mt-1">Rp{{ number_format($plan->price, 0, ',', '.') }}</p>
