@@ -15,7 +15,7 @@ class MealPlanController extends Controller
 
 public function show($id)
 {
-    abort_unless(request()->ajax(), 404); // Cegah akses langsung
+    abort_unless(request()->ajax(), 404); 
     $plan = MealPlan::findOrFail($id);
 return view('plans.partials.modal', compact('plan'));
 

@@ -22,7 +22,6 @@
             </p>
           </div>
 
-          <!-- Buttons -->
           <div class="mt-4 flex flex-wrap gap-2">
             @if($sub->status == 'active')
               <form method="POST" action="{{ route('dashboard.pause', $sub->id) }}">

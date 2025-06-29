@@ -2,7 +2,7 @@
 
 @section('content')
 
-<!-- Hero Section -->
+<!-- Slogan Section -->
 <section class="min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-green-100 to-green-200 text-center px-4" data-aos="fade-up">
     <div>
         <img src="{{ asset('images/icon.png') }}" alt="SEA Catering Logo" class="mx-auto w-28 mb-6" />
@@ -78,7 +78,7 @@
       @endauth
     </div>
 
-    <!-- List of Testimonials -->
+    <!-- List  Testimony -->
     @php
       $testimonials = \App\Models\Testimonial::latest()->get();
     @endphp

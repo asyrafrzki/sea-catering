@@ -1,61 +1,162 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🥗 SEA Catering — Aplikasi Langganan Paket Makanan Sehat
+---
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**SEA Catering** adalah **platform web** untuk langganan paket makanan sehat yang bisa **disesuaikan** sesuai kebutuhan pelanggan di seluruh Indonesia.  
+Pelanggan dapat:
+- Memilih paket sesuai tujuan (*diet*, *protein*, *premium*)
+- Mengatur jadwal pengiriman
+- Menjeda atau menghentikan langganan dengan mudah melalui **Dashboard Interaktif**
 
-## About Laravel
+> **✨ Tidak hanya untuk pelanggan, admin juga memiliki Dashboard Admin yang lengkap untuk memantau:**
+> - Statistik pertumbuhan bisnis
+> - Grafik langganan
+> - Manajemen pengguna
+> - Testimonial pelanggan  
+> Semua data **real-time** dan mudah digunakan
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**🔐 Autentikasi Pengguna**  
+Sistem registrasi dan login yang aman untuk menjaga data pelanggan tetap terlindungi.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**🍽️ Menu Paket Interaktif**  
+Jelajahi berbagai paket makan dengan detail, gambar menarik, dan informasi gizi.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**⚙️ Form Langganan Dinamis**  
+Hitung total harga secara otomatis sesuai pilihan paket dan durasi langganan.
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**📊 Dashboard Pengguna**  
+Kelola status langganan: jeda, lanjut, atau batalkan kapan saja melalui dashboard interaktif.
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+**🗂️ Dashboard Admin**  
+Lihat statistik pertumbuhan bisnis, grafik langganan, filter data berdasarkan rentang tanggal, dan kelola data pengguna secara real-time.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**💬 Sistem Testimoni**  
+Pelanggan dapat memberi ulasan dan penilaian untuk meningkatkan kepercayaan pengguna baru.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**📱 Desain Responsif**  
+Tampilan modern dan nyaman di desktop maupun mobile — mudah digunakan di mana saja.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## ⚡️ Setup & Instalasi
+
+### 📋 Persyaratan
+
+Sebelum memulai, pastikan kamu sudah menginstal:
+
+- **PHP 8.x**
+- **Composer**
+- **Node.js & NPM**
+- **MySQL / MariaDB** (Laragon atau XAMPP)
+
+### 1️⃣ Clone Repository
+
+Pertama, clone repository project ini ke terminal di IDE-mu:
+
+```bash
+git clone https://github.com/asyrafrzki/sea-catering.git
+```
+
+Lalu pindah ke direktori project:
+
+```bash
+cd sea-catering
+
+```
+### 2️⃣ Install Dependencies
+
+Selanjutnya, install semua dependensi yang dibutuhkan, baik untuk PHP maupun JavaScript:
+
+```bash
+# Install composer
+composer install
+
+# Install JavaScript npm
+npm install
+```
+### 3️⃣ Konfigurasi Environment
+
+```
+Set up file `.env` 
+```
+
+ buka file .env dan atur koneksi database sesuaikan dengan server lokalmu. konfigurasi untuk XAMPP:
+
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=sea_catering
+DB_USERNAME=root
+DB_PASSWORD=
+```
+setelah itu  generate APP_KEY:
+
+``` bash
+php artisan key:generate
+
+```
+
+### 4️⃣ Database Set Up
+import database **sea_catering** kedalam XAMPP
+
+### download file .sql
+
+```bash
+file .sql berada di folder /database
+
+```
+### lalu buka XAMPP lalu click admin di MySQL:
+![alt text](image.png)
+
+### lalu masukkan file .sql tadi:
+![alt text](image-1.png)
+
+### lalu click import
+### NOTE:
+### jika kamu import maka tidak perlu:
+```bash
+php artisan db:create
+php artisan migrate:fresh --seed
+```
+## karena akan menghapus isi yang sudah ada di database
+
+### 5️⃣ Compile Assets Front-end
+
+```bash
+npm run dev
+
+```
+### 6️⃣ Jalankan Aplikasi
+
+```
+php artisan serve
+
+```
+klik:
+```
+http://localhost:8000.
+```
+
+## 🔑 Login Admin
+```
+Email = admin@gmail.com
+Password = Admin123!
+```

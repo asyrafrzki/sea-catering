@@ -23,7 +23,6 @@
     @if ($subscriptions->isEmpty())
         <div class="text-center text-gray-600">You have no subscriptions yet.</div>
     @else
-        <!-- Desktop Table -->
         <div class="hidden sm:block overflow-x-auto">
             <table class="w-full border-collapse bg-white shadow rounded-lg overflow-hidden">
                 <thead class="bg-green-100 text-green-700">

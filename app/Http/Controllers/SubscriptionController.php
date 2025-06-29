@@ -9,27 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class SubscriptionController extends Controller
 {
-    /**
-     * Tampilkan daftar subscription user
-     */
     public function index()
     {
         $subscriptions = Subscription::where('user_id', Auth::id())->get();
         return view('subscription.index', compact('subscriptions'));
     }
-
-    /**
-     * Tampilkan form create
-     */
     public function create()
     {
         $plans = MealPlan::all(); // Ambil semua meal plan dari DB
         return view('subscription.create', compact('plans'));
     }
 
-    /**
-     * Simpan subscription baru
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -41,7 +31,7 @@ class SubscriptionController extends Controller
             'allergies' => 'nullable|string',
         ]);
 
-        // Cari MealPlan berdasarkan name (pastikan value="diet", "protein", dll)
+        // Cari MealPlan berdasarkan name 
         $mealPlan = MealPlan::where('name', $request->plan)->first();
 
         // Jika meal plan tidak ditemukan

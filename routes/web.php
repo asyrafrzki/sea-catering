@@ -11,18 +11,18 @@ use App\Http\Controllers\AdminDashboardController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// === Auth ===
+// Auth
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-// === Meal Plans ===
+// Meal Plans
 Route::get('/plans', [MealPlanController::class, 'index'])->name('plans.index');
 Route::get('/plans/{id}', [MealPlanController::class, 'show'])->name('plans.show');
 
-// === Subscription (User) ===
+// Subscription (User)
 Route::middleware(['auth'])->group(function () {
     Route::get('/subscription', [SubscriptionController::class, 'create'])->name('subscription.create');
     Route::post('/subscription', [SubscriptionController::class, 'store'])->name('subscription.store');
@@ -33,14 +33,14 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/dashboard/{subscription}/cancel', [DashboardController::class, 'cancel'])->name('dashboard.cancel');
 });
 
-// === Admin Dashboard ===
+// Admin Dashboard
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     Route::delete('/admin/users/{user}', [AdminDashboardController::class, 'deleteUser'])->name('admin.users.delete');
     Route::get('/admin/users/{user}/subscriptions', [AdminDashboardController::class, 'viewUserSubscriptions'])->name('admin.users.subscriptions');
 });
 
-// === Testimonial ===
+// Testimonial
 Route::post('/testimonial', [TestimonialController::class, 'store'])
     ->middleware('auth')
     ->name('testimonial.store');

@@ -51,7 +51,6 @@
         <span>SEA Catering</span>
       </a>
 
-      <!-- Desktop Menu -->
       <div class="hidden md:flex items-center space-x-6">
         <a href="/" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('/') ? 'active' : '' }}">Home</a>
         <a href="{{ route('plans.index') }}" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all {{ request()->is('plans') ? 'active' : '' }}">Menu</a>
@@ -65,11 +64,11 @@
           Subscription
         </a>
 
-        <!--  Updated Contact Us link -->
+       
         <a href="#contact" class="relative nav-hover text-white font-medium px-4 py-2 rounded-full transition-all">Contact Us</a>
       </div>
 
-      <!-- User Auth / Dropdown -->
+      <!-- User Auth -->
       <div class="hidden md:flex items-center space-x-3">
         @auth
           <div x-data="{ open: false }" class="relative">
@@ -104,8 +103,6 @@
           <a href="{{ route('register') }}" class="border border-white text-white font-semibold px-5 py-2 rounded-full hover:bg-white hover:text-green-600 transition">Sign Up</a>
         @endauth
       </div>
-
-      <!-- Mobile Toggle -->
       <button id="menu-toggle" class="md:hidden text-white text-3xl focus:outline-none">☰</button>
     </div>
 
@@ -129,7 +126,6 @@
         Subscription
       </a>
 
-      <!--  Updated Mobile Contact Us link -->
       <a href="#contact"
          class="font-medium py-1 w-11/12 text-center rounded-full transition text-white hover:bg-white hover:text-green-700">
         Contact Us
@@ -156,17 +152,14 @@
   </div>
 </nav>
 
-<!-- Page Content -->
 <main class="min-h-[calc(100vh-64px-96px)]">
   @yield('content')
 </main>
 
-<!--  Footer with ID -->
 <footer id="contact" class="bg-green-600 text-white text-center py-6 mt-16">
   <p class="font-semibold">SEA Catering &copy; {{ date('Y') }} | Contact Manager: Brian | 08123456789</p>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
   AOS.init({ once: true, duration: 800, offset: 120, easing: 'ease-in-out' });
@@ -175,7 +168,6 @@
   });
 </script>
 
-<!-- SweetAlert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
   @if (session('success'))

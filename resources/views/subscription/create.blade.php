@@ -25,8 +25,7 @@
                 <input type="text" name="phone" required class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-green-300" />
             </div>
         </div>
-
-        {{-- Plan Selection --}}
+        
         <div class="mb-6">
             <label class="font-semibold block mb-2">Select a Plan *</label>
             <input type="hidden" name="plan" id="plan" required>
@@ -49,7 +48,6 @@
             <p class="text-sm text-gray-500 mt-2">Tap a card to select your plan.</p>
         </div>
 
-        {{-- Meal Types --}}
         <div class="mb-5">
             <label class="font-semibold block mb-2">Meal Types *</label>
             <div class="flex flex-wrap gap-4">
@@ -62,7 +60,6 @@
             </div>
         </div>
 
-        {{-- Delivery Days --}}
         <div class="mb-5">
             <label class="font-semibold block mb-2">Delivery Days *</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -76,26 +73,23 @@
             <p class="text-sm text-gray-500 mt-1">You can select one or more days.</p>
         </div>
 
-        {{-- Allergies --}}
         <div class="mb-5">
             <label class="font-semibold block mb-1">Allergies</label>
             <input type="text" name="allergies" class="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-green-300" placeholder="(Optional)">
         </div>
 
-        {{-- Total --}}
         <div class="mb-6 bg-green-50 border border-green-300 text-green-700 p-4 rounded-lg">
             <p class="font-semibold">Estimated Total Price:</p>
             <p class="text-xl font-bold mt-1" id="total-price">Rp0</p>
         </div>
 
-        {{-- Submit --}}
         <button type="submit" class="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition duration-200">
             Submit Subscription
         </button>
     </form>
 </div>
 
-{{-- Scripts --}}
+
 <script>
     const planCards = document.querySelectorAll('.plan-card');
     const planInput = document.getElementById('plan');
